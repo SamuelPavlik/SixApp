@@ -15,8 +15,9 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) throws InterruptedException {
         Product createdProduct = productService.createProduct(productDTO);
+        Thread.sleep(200);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 
@@ -28,8 +29,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ResponseEntity<List<Product>> getAllProducts() throws InterruptedException {
         List<Product> products = productService.getAllProducts();
+        Thread.sleep(300);
         return ResponseEntity.ok().body(products);
     }
 
